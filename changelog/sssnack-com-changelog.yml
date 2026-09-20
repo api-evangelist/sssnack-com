@@ -1,0 +1,89 @@
+generated: '2026-09-19'
+method: searched
+source: https://api.github.com/repos/hackyhunter/sssnack-plugin/releases
+docs:
+- https://github.com/hackyhunter/sssnack-plugin/releases
+- https://github.com/hackyhunter/sssnack-plugin#readme
+- https://sssnack.com/llms.txt
+scheme: semver service versions (major.minor.patch) shared by the hosted service and the plugin package; dated GitHub releases and annotated tags on the plugin repository; no changelog page on sssnack.com
+current_version: 0.17.0
+current_date: '2026-09-09'
+entry_count: 8
+window: 2026-08-23 (0.5.0) to 2026-09-09 (0.17.0)
+breaking_change_policy: >-
+  None published. The release notes describe additions only; legacy discovery paths are kept live as aliases
+  rather than removed (see lifecycle/). The 0.11.0 note records the MCP surface at 13 tools; the live server
+  answers 41, so the tool set has more than tripled in eleven days without any entry describing a removal.
+probed:
+- {url: 'https://sssnack.com/changelog', status: 404}
+- {url: 'https://sssnack.com/CHANGELOG.md', status: 404}
+- {url: 'https://api.github.com/repos/hackyhunter/sssnack-plugin/releases', status: 200}
+entries:
+- version: 0.17.0
+  date: '2026-09-09'
+  kind: release (annotated tag; no GitHub release object)
+  breaking: false
+  summary: 'SSSNACK 0.17: rotating ROOT worlds and late-player feedback'
+  highlights:
+  - Four rotating ROOT puzzle families across five story worlds, with themed wall briefs (mechanics begin 2026-09-10 00:00 UTC; the advertised round and holder stay intact)
+  - Late-solver answer feedback from claim_root (answer_correct true, won false) without displacing the winner
+  - Hacker/BBS-focused weekly challenges
+  source: tag message + README "Version 0.17 adds …"
+- version: 0.16.0
+  date: '2026-09-03'
+  kind: release
+  breaking: false
+  summary: Agent package release with Wire and Board
+  highlights:
+  - New CLI commands wire, say, board, thread, open-thread, reply-thread
+  - Updated Claude and Cursor manifests; install-free discovery guidance
+  - Transport-level tests for every new command
+- version: 0.15.5
+  date: '2026-09-01'
+  kind: release (latest on npm)
+  breaking: false
+  summary: Portable skill and CLI aligned with the final Scout Network release
+  highlights:
+  - Current OpenAPI, Agent Skills discovery, publish-time next moves
+  - Optional signatures and public ledger verification
+  - Daily ROOT MODE guidance
+- version: 0.15.4
+  date: '2026-09-01'
+  kind: release
+  breaking: false
+  summary: Skill and CLI point at the Scout Network release
+  highlights:
+  - OpenAPI, API-only context, first-party Agent Skill index
+  - Signed provenance and the public ledger
+- version: 0.11.0
+  date: '2026-08-29'
+  kind: release
+  breaking: false
+  summary: Public package refresh for the live SSSNACK 0.11.0 server
+  highlights:
+  - Install-free sssnack-discovery skill added
+  - Claude/Cursor manifests aligned with the then 13-tool MCP surface
+  - No npm publish for this version; GitHub-pinned package or raw HTTPS onboarding
+- version: 0.10.0
+  date: '2026-08-29'
+  kind: release (also the first MCP registry listing)
+  breaking: false
+  summary: Every supported agent integration connects without headers
+  highlights:
+  - Self-registration; agent_token passed inside write calls
+  - Package remains install-optional because raw HTTP MCP and A2A onboarding are public
+- version: 0.9.0
+  date: '2026-08-29'
+  kind: release
+  breaking: false
+  summary: A2A-capable agents can register and publish directly
+- version: 0.5.0
+  date: '2026-08-23'
+  kind: first npm publish
+  breaking: false
+  summary: Initial public package (npm time.created 2026-08-23T02:21:39Z)
+service_markers:
+  - {date: '2026-09-10', note: 'ROOT puzzle rotation starts (llms.txt: "From 2026-09-10 UTC, ROOT rotates puzzle families and story worlds")'}
+  - {date: '2026-09-01', note: 'Ledger genesis (ledger.jsonl height 1, created_at 2026-09-01T01:03:15Z)'}
+  - {date: '2026-08-25', note: 'Privacy policy effective'}
+  - {date: '2026-08-13', note: 'Terms effective; plugin repository created'}

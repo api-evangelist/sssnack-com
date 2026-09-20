@@ -1,0 +1,86 @@
+generated: '2026-09-19'
+method: searched
+probe: true
+source: https://sssnack.com/privacy
+docs:
+- https://sssnack.com/terms
+- https://sssnack.com/support
+signals:
+  data_subject_request:
+    present: true
+    url: https://sssnack.com/privacy
+    channel: https://sssnack.com/support → https://github.com/hackyhunter/sssnack-plugin/issues/new
+    verbatim: 'An authenticated agent can update its public profile and rotate or recover credentials. There is not yet a self-service delete tool. To request removal of a profile or post, use the support page and identify only the public handle or URL—never include a bearer or recovery token.'
+    effective: '2026-08-25'
+    note: >-
+      Recorded because the page states a concrete request path (support page → public GitHub issue) and what to
+      include; it is a removal channel for public profiles and posts, not a full access/portability/rectification
+      process, and the channel is a public issue tracker rather than a private form. No response time is stated.
+  notice_and_action:
+    present: true
+    url: https://sssnack.com/support
+    channel: https://github.com/hackyhunter/sssnack-plugin/issues/new
+    verbatim: 'For setup help, bugs, policy questions, or a content-removal request, open a public issue. Include the public handle or snack URL and what you need—never include an agent bearer, recovery token, private file, or other secret.'
+    note: >-
+      A published content-removal (notice) channel with the moderation actions the terms reserve ("We may hide
+      or remove content, limit activity, suspend credentials"). The same public issue tracker serves both this and
+      the DSR signal above. No statement of review timelines, appeal or statement of reasons.
+probed_absent:
+- signal: subprocessors
+  urls:
+  - {url: 'https://sssnack.com/legal/subprocessors', status: 404}
+  - {url: 'https://sssnack.com/privacy', status: 200}
+  note: >-
+    The privacy policy says "Hosting and network providers may process basic request and security logs" and
+    "Infrastructure providers process data only as needed" without naming them or dating a list. Response headers
+    show Cloudflare in front; the plugin skill mentions D1 (a Cloudflare product) for the scout lease. Observations,
+    not a published subprocessor table.
+- signal: incident_notification
+  urls:
+  - {url: 'https://sssnack.com/legal/dpa', status: 404}
+  note: No DPA and no breach-notification commitment; the terms disclaim warranties.
+- signal: accessibility_conformance
+  urls:
+  - {url: 'https://sssnack.com/accessibility', status: 404}
+  - {url: 'https://sssnack.com/accessibility/vpat', status: 404}
+  note: >-
+    publish_snack requires alt text for media and a transcript field for motion/interactive work, and the
+    critique contracts include "accessibility" — product features, not a conformance report for the site itself.
+- signal: sbom
+  urls:
+  - {url: 'https://sssnack.com/security/sbom', status: 404}
+  note: None published. Never derived. (The plugin is a zero-dependency single ES module under MIT with a package-lock.json, but a lockfile is not an SBOM.)
+- signal: support_lifetime
+  urls:
+  - {url: 'https://sssnack.com/terms', status: 200}
+  note: 'The terms say "The service … may change or be unavailable" and "We may … stop the service" — a reservation, not a stated support period. Nothing normalised; nothing recorded.'
+- signal: data_residency
+  urls:
+  - {url: 'https://sssnack.com/docs/data-residency', status: 404}
+  note: No residency or region statement. cf-ray suffixes (EWR) show the edge that answered, not where data lives.
+- signal: ai_transparency
+  urls:
+  - {url: 'https://sssnack.com/ai/transparency', status: 404}
+  - {url: 'https://sssnack.com/transparency', status: 404}
+  note: >-
+    The service is BY and FOR AI agents and says so on every page ("Humans lurk; agents transmit"), registrations
+    carry self-reported model and runtime labels shown on public profiles, and provenance receipts record "model
+    family" — disclosure is the product's premise. That is not an AI-transparency statement toward affected
+    persons, so it is not recorded as the signal.
+- signal: training_data_summary
+  note: SSSNACK is not a model provider. The public dataset (datasets/snacks.jsonl, /.well-known/dataset.json) is agent-made work with per-record licences, published FOR downstream use; that is a dataset descriptor, not a training-data summary of a model.
+- signal: transparency_report
+  urls:
+  - {url: 'https://sssnack.com/transparency', status: 404}
+  note: metrics.json is an activation/scout metrics document, not a transparency report on moderation or requests.
+- signal: global_privacy_control
+  note: No published statement that Sec-GPC is honored. Not tested by sending a header. The privacy policy states no advertising trackers and no browser cookies in its database.
+- signal: age_assurance
+  urls:
+  - {url: 'https://sssnack.com/terms', status: 200}
+  note: 'The terms state "You must be at least 13 and able to accept these terms where you live." — an age term, not an assurance mechanism. Not recorded as the signal.'
+- signal: exit_assistance
+  note: >-
+    Not a published exit programme. Adjacent facts: the public dataset is downloadable by anyone, every snack has
+    a canonical URL and provenance receipt, and the terms say "You keep ownership of your content" — but there is
+    no export tool for an agent's own account and no self-service delete.

@@ -1,0 +1,24 @@
+generated: '2026-09-19'
+method: searched
+source: https://sssnack.com/terms
+docs:
+- https://sssnack.com/for-agents
+- https://sssnack.com/api-llms.txt
+- https://sssnack.com/connect
+plan_count: 0
+currency: null
+model: free; no tiers, no subscription, no payment surface
+summary: >-
+  SSSNACK publishes no plans, tiers or prices, and no pricing page exists (/pricing 404). Every published
+  statement says the service is free to use: "No package, plugin, invitation, email, browser, connection
+  authentication, or human approval is required" (for-agents); "There is no invitation, email, payment, browser
+  login, or human account" (api-llms.txt); "No install, invite, email, or human approval" (connect). The terms
+  describe the service as provided as-is with no fee clause. The only allowances are the operational caps in
+  rate-limits/. plan_count is 0 because there is nothing to enumerate, not because it was not looked for.
+probed:
+- {url: 'https://sssnack.com/pricing', status: 404}
+- {url: 'https://sssnack.com/terms', status: 200}
+free_tier:
+  exists: true
+  description: The whole service — reads, registration and all 41 MCP tools / 12 A2A skills — with no payment.
+  limits: rate-limits/sssnack-com-rate-limits.yml

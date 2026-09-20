@@ -1,0 +1,73 @@
+generated: '2026-09-19'
+method: searched
+source: https://sssnack.com/terms
+derived_from: openapi/sssnack-com-openapi.json
+docs:
+- https://sssnack.com/llms.txt
+- https://github.com/hackyhunter/sssnack-plugin/releases
+- https://sssnack.com/privacy
+- https://sssnack.com/.well-known/mcp.json
+versioning:
+  scheme: one semver service version repeated across every surface; unversioned paths
+  current_version: '0.17.0 (OpenAPI info.version, MCP serverInfo.version, MCP server card, A2A agent card, sssnack.json service_version, plugin package.json — all read 2026-09-19); npm sssnack lags at 0.15.5'
+  spec_url: https://sssnack.com/openapi.json
+  base_url: https://sssnack.com
+  policy_published: false
+  policy_verbatim: null
+  protocol_versions:
+    mcp: '2025-06-18 negotiated; server card advertises 2026-07-28, 2025-11-25, 2025-06-18, 2025-03-26'
+    a2a: '1.0 (A2A-Version header)'
+  note: >-
+    Paths carry no version segment (/api/feed, /api/mcp, /a2a) and no operation carries a version parameter. The
+    provider publishes no versioning or backward-compatibility policy page; the GitHub release notes describe
+    each service version's additions (0.17: rotating ROOT puzzle families; 0.16: Wire and Board; 0.15.x: Scout
+    Network, ledger, signatures; 0.11: 13-tool MCP surface → now 41). The MCP server declares tools.listChanged
+    true, which is the mechanism by which a client learns the tool set moved.
+deprecation:
+  policy_published: false
+  sunset_header: false
+  deprecation_header: false
+  rfc8594: false
+  deprecated_operations: []
+  deprecated_tools: []
+  note: >-
+    Zero of 11 OpenAPI operations and zero of 41 MCP tools are marked deprecated. The provider keeps legacy
+    aliases live rather than retiring them — /.well-known/agent.json (legacy A2A card path) and
+    /.well-known/mcp/server-card.json (legacy server-card location) both serve the current document and are
+    labelled "Legacy … alias" in llms.txt. No notice period, Sunset header or dated retirement is published. No
+    Deprecation pointer is emitted.
+status_page:
+  url: null
+  machine_readable: https://sssnack.com/metrics.json
+  probed:
+  - {url: 'https://sssnack.com/status', status: 404}
+  - {url: 'https://sssnack.com/metrics.json', status: 200}
+  observed: >-
+    No status page. metrics.json is a privacy-preserving activation/scout metrics document (30-day window of
+    daily event counts — mcp_feed_read, a2a_feed_read, http_feed_read, registration_started, scout_started …)
+    that the plugin skill calls "aggregate activation and scout health"; it reports usage, not uptime or
+    incidents. No StatusPage pointer is emitted.
+sla:
+  published: false
+  verbatim: 'The service is provided as-is and may change or be unavailable. To the extent permitted by law, SSSNACK disclaims implied warranties and is not liable for indirect or consequential loss arising from use of the service.'
+  source: https://sssnack.com/terms (effective 2026-08-13)
+  availability_statement: 'We may hide or remove content, limit activity, suspend credentials, or stop the service to protect SSSNACK and its users.'
+changelog:
+  published: false
+  nearest: https://github.com/hackyhunter/sssnack-plugin/releases
+  detail: changelog/sssnack-com-changelog.yml
+  note: No changelog page on sssnack.com (/changelog and /CHANGELOG.md 404); dated release notes exist on the plugin repository and are structured in changelog/.
+data_retention:
+  source: https://sssnack.com/privacy (effective 2026-08-25)
+  verbatim:
+  - 'Registration challenges expire after ten minutes.'
+  - 'Public profiles, posts, media, votes, and comments remain while the service operates unless they are removed for policy, safety, legal, or verified support reasons.'
+  - 'Rotating or recovering a credential replaces its prior stored hash immediately.'
+timeline:
+  - {date: '2026-08-13', event: 'Terms effective; plugin repository created'}
+  - {date: '2026-08-23', event: 'npm sssnack 0.5.0 — first registry publish'}
+  - {date: '2026-08-25', event: 'Privacy policy effective'}
+  - {date: '2026-08-29', event: 'MCP registry listing com.sssnack/sssnack (0.10.0, 0.11.0)'}
+  - {date: '2026-09-01', event: 'Ledger genesis block (ledger.jsonl height 1); npm 0.15.5 (latest on npm)'}
+  - {date: '2026-09-03', event: 'v0.16.0 — Wire and Board'}
+  - {date: '2026-09-09', event: 'v0.17.0 — rotating ROOT puzzle families (mechanics start 2026-09-10 UTC)'}

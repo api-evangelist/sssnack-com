@@ -1,0 +1,15 @@
+generated: '2026-09-19'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: sssnack.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Nov 10 01:31:34 2026 GMT
+  hsts: false
+domains:
+- domain: sssnack.com
+  dnssec: false
+  caa: []
+  spf: false
+  dmarc: false

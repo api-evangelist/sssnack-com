@@ -1,0 +1,99 @@
+generated: '2026-09-19'
+method: searched
+source: https://registry.npmjs.org/sssnack
+docs:
+- https://github.com/hackyhunter/sssnack-plugin
+- https://sssnack.com/connect
+- https://sssnack.com/llms.txt
+package_count: 6
+official_count: 6
+summary: >-
+  SSSNACK ships one first-party client package from one repository, github.com/hackyhunter/sssnack-plugin (MIT,
+  created 2026-08-13, last push 2026-09-09, tags v0.5.0 … v0.17.0), distributed six ways: as npm `sssnack`
+  (registry answered 2026-09-19 — latest 0.15.5 published 2026-09-01, 8 versions since 2026-08-23, maintainer
+  "sssnack", repository field pointing at the plugin repo, homepage sssnack.com), as a GitHub-pinned npx package
+  (github:hackyhunter/sssnack-plugin#v0.17.0 — the form the provider's own docs, server card and llms.txt use,
+  because npm lags the live 0.17.0 service by two minors), as a Claude Code plugin marketplace, as a Cursor plugin
+  manifest, as a portable Agent Skill (npx skills add hackyhunter/sssnack-plugin --skill sssnack, also listed on
+  ClawHub and skills.sh), and via Smithery. All six wrap the SAME hosted MCP endpoint (https://sssnack.com/api/mcp);
+  none is an SDK in the typed-client sense — the package is a zero-dependency CLI plus MCP client manifests plus
+  the skill. No PyPI, Maven, NuGet, Go, RubyGems, Packagist or crates.io package exists (pypi.org/pypi/sssnack
+  404). The npm package (0.15.5, 2026-09-01) predates the live service (0.17.0, 2026-09-09) by eight days and two
+  minor versions; the GitHub-pinned distribution is current. That is a small, recent lag, not an abandonment signal.
+packages:
+- language: javascript
+  registry: npm
+  name: sssnack
+  url: https://www.npmjs.com/package/sssnack
+  source: https://github.com/hackyhunter/sssnack-plugin
+  install: npx sssnack <command>
+  official: true
+  version: 0.15.5
+  published: '2026-09-01'
+  license: MIT
+  registry_metadata: https://registry.npmjs.org/sssnack
+  versions_published: 8
+  first_published: '2026-08-23'
+  engines: node >=20
+  note: 'Agent-native CLI and skill; bin sssnack → plugins/sssnack/skills/sssnack/scripts/sssnack.mjs. Lags the GitHub tag v0.17.0 by two minors; the provider documents the GitHub-pinned form below as "the working pinned CLI".'
+- language: javascript
+  registry: github
+  name: 'github:hackyhunter/sssnack-plugin#v0.17.0'
+  url: https://github.com/hackyhunter/sssnack-plugin/tree/v0.17.0
+  source: https://github.com/hackyhunter/sssnack-plugin
+  install: 'npx --yes github:hackyhunter/sssnack-plugin#v0.17.0 <command>'
+  official: true
+  version: 0.17.0
+  published: '2026-09-09'
+  license: MIT
+  registry_metadata: https://api.github.com/repos/hackyhunter/sssnack-plugin/git/refs/tags/v0.17.0
+  note: 'Version read from the pinned tag; date from the annotated tag (tagger date 2026-09-09T01:43:01Z, message "SSSNACK 0.17: rotating ROOT worlds and late-player feedback"). This is the distribution every provider document quotes.'
+- language: n/a
+  registry: claude-code-plugin-marketplace
+  name: sssnack@sssnack
+  url: https://github.com/hackyhunter/sssnack-plugin/blob/main/.claude-plugin/marketplace.json
+  source: https://github.com/hackyhunter/sssnack-plugin/tree/main/plugins/sssnack
+  install: '/plugin marketplace add hackyhunter/sssnack-plugin && /plugin install sssnack@sssnack'
+  official: true
+  version: 0.17.0
+  published: '2026-09-09'
+  license: MIT
+  note: plugin.json declares mcpServers.sssnack {type http, url https://sssnack.com/api/mcp} plus two skills (sssnack, sssnack-discovery). Version from plugins/sssnack/.claude-plugin/plugin.json on main; date is the v0.17.0 tag.
+- language: n/a
+  registry: cursor-plugin
+  name: sssnack
+  url: https://github.com/hackyhunter/sssnack-plugin/tree/main/plugins/sssnack
+  install: '/add-plugin sssnack (README: "Once the marketplace listing is approved")'
+  official: true
+  version: 0.17.0
+  published: '2026-09-09'
+  license: MIT
+  note: Manifest present in the repo (.cursor-plugin/marketplace.json, plugins/sssnack/.cursor-plugin/plugin.json); the README says the Cursor marketplace listing is pending approval.
+- language: n/a
+  registry: agent-skill
+  name: hackyhunter/sssnack-plugin --skill sssnack
+  url: https://skills.sh/hackyhunter/sssnack-plugin/sssnack
+  source: https://github.com/hackyhunter/sssnack-plugin/blob/main/plugins/sssnack/skills/sssnack/SKILL.md
+  install: npx skills add hackyhunter/sssnack-plugin --skill sssnack
+  official: true
+  version: 0.17.0
+  published: '2026-09-09'
+  license: MIT
+  note: 'Portable skill (saved verbatim under skills/). Also listed on ClawHub (https://clawhub.ai/hackyhunter/skills/sssnack-discovery, 200) and skills.sh (308 redirect on probe). Version/date from the repo tag; the skill files carry no version of their own.'
+- language: n/a
+  registry: smithery
+  name: johnnyh/sssnack
+  url: https://smithery.ai/servers/johnnyh/sssnack
+  registry_metadata: https://registry.smithery.ai/servers/johnnyh/sssnack
+  official: true
+  version: null
+  published: null
+  note: 'Listing of the hosted MCP server (registry.smithery.ai answered 200, 12.5 KB); Smithery does not expose a package version — it points at https://sssnack.com/api/mcp. Recorded with version null because there is no versioned artifact to read.'
+absent_registries:
+- {registry: pypi, name: sssnack, status: 404}
+- {registry: npm, name: sssnack-plugin, status: 404}
+- {registry: npm, name: '@sssnack/mcp', status: 404}
+sdk_note: >-
+  The SDKs pointer is emitted because the package is a first-party, provider-maintained client (the CLI
+  wraps every MCP tool and stores credentials), but buyers should read it as a CLI + plugin, not a typed
+  language SDK — there is no TypeScript/Python client library.

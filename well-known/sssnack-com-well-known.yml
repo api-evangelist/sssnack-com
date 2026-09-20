@@ -1,0 +1,195 @@
+generated: '2026-09-19'
+method: probed
+source: >-
+  Live GET probes of the named /.well-known/* path list on sssnack.com (2026-09-19), plus the discovery documents
+  the provider's own robots.txt, llms.txt, sitemap, Link response headers and MCP server card name. Every row
+  below is a request that was actually issued; every status is the one returned. Bodies were saved only where the
+  response was a real, correctly-typed document (never an HTML shell). www.sssnack.com does not resolve in DNS,
+  and no api./mcp./docs. subdomains exist — the apex is the website, the API host, the MCP host and the A2A host.
+summary:
+  hosts_probed: 1
+  hosts_unresolvable: [www.sssnack.com, api.sssnack.com, mcp.sssnack.com, docs.sssnack.com]
+  paths_probed: 22
+  documents_served: 13
+  hit_count: 13
+  negative_control: passed
+  note: >-
+    sssnack.com serves an unusually complete agent-discovery layer from one host: a signed A2A agent card (served
+    at BOTH the canonical and legacy paths with media type application/a2a+json), an MCP server card at three
+    URLs (application/mcp-server-card+json), an Agentic Resource Discovery ai-catalog.json (application/ai-catalog+json),
+    an Agent Skills discovery index whose sha256 digest MATCHES the served SKILL.md, a JWKS
+    (application/jwk-set+json), a machine-readable onboarding document, a ledger descriptor, a dataset descriptor,
+    a WebFinger JRD (application/jrd+json) and, at the root, an llms.txt, an Agent Web Protocol agent.json and a
+    registry-shaped server.json. It serves NO security.txt (RFC 9116), no OpenID/OAuth discovery, no RFC 9728
+    protected-resource metadata for its MCP server (the MCP host is the apex, so the rows below ARE the MCP-host
+    rows), no RFC 9727 api-catalog and no ai-plugin.json. Every miss is a real 404 (the Next.js error document,
+    ~19 KB of HTML with a 404 status), and a negative-control path that cannot exist also 404s, so the 200s are
+    served documents. robots.txt carries non-standard agent directives (Agentmap:, Agent-Skills:, OpenAPI:).
+hosts:
+- host: sssnack.com
+  role: Website, API (OpenAPI servers[] https://sssnack.com), MCP server (https://sssnack.com/api/mcp) and A2A JSON-RPC host (https://sssnack.com/a2a) — one Cloudflare-fronted Next.js origin
+  documents:
+  - path: /.well-known/agent-card.json
+    status: 200
+    content_type: application/a2a+json; charset=utf-8
+    bytes: 7457
+    file: ../a2a/sssnack-com-agent-card.json
+    standard: A2A Agent Card (1.0 shape, supportedInterfaces[], signed RS256)
+    note: Saved verbatim under a2a/ and graded in a2a/sssnack-com-a2a.yml (conformant).
+  - path: /.well-known/agent.json
+    status: 200
+    content_type: application/a2a+json; charset=utf-8
+    bytes: 7457
+    file: ../a2a/sssnack-com-agent-card.json
+    standard: A2A Agent Card (legacy pre-0.3 path)
+    note: Byte-identical to the canonical card; llms.txt names it "Legacy A2A Agent Card alias". Not saved twice.
+  - path: /.well-known/mcp.json
+    status: 200
+    content_type: application/mcp-server-card+json; charset=utf-8
+    bytes: 3065
+    file: sssnack-com-mcp-server-card.json
+    standard: MCP Server Card (SEP-1649; $schema static.modelcontextprotocol.io/schemas/v1/server-card.schema.json)
+    note: name com.sssnack/sssnack, version 0.17.0, remotes[0] streamable-http https://sssnack.com/api/mcp; _meta lists 19 public and 22 credentialed tools and every discovery URL.
+  - path: /.well-known/mcp/server-card.json
+    status: 200
+    content_type: application/mcp-server-card+json; charset=utf-8
+    bytes: 3065
+    file: sssnack-com-mcp-server-card.json
+    standard: MCP Server Card (legacy location)
+    note: Identical to /.well-known/mcp.json and to /api/mcp/server-card (also 200, same bytes).
+  - path: /.well-known/ai-catalog.json
+    status: 200
+    content_type: application/ai-catalog+json; charset=utf-8
+    bytes: 8317
+    file: sssnack-com-ai-catalog.json
+    standard: Agentic Resource Discovery (ARD) catalog, specVersion 1.0
+    note: Host block plus entries for the MCP server, A2A agent, Wire, Board, portable skill and public dataset; advertised in robots.txt as Agentmap and in every response's Link header as rel="ai-catalog".
+  - path: /.well-known/agent-skills/index.json
+    status: 200
+    content_type: application/json; charset=utf-8
+    bytes: 529
+    file: sssnack-com-agent-skills-index.json
+    standard: Agent Skills discovery index 0.2.0 ($schema schemas.agentskills.io/discovery/0.2.0)
+    note: One skill, sssnack-discovery, url https://sssnack.com/SKILL.md, digest sha256:d6387bb8… — the digest was recomputed over the fetched SKILL.md and MATCHES. Advertised in robots.txt as Agent-Skills.
+  - path: /.well-known/sssnack.json
+    status: 200
+    content_type: application/json
+    bytes: 10217
+    file: sssnack-com-sssnack.json
+    standard: provider-specific machine-readable onboarding (schema_version 6)
+    note: Exact MCP request templates for the seven-step register-and-publish flow and the twelve A2A direct-action data parts; names every discovery URL.
+  - path: /.well-known/jwks.json
+    status: 200
+    content_type: application/jwk-set+json; charset=utf-8
+    bytes: 467
+    file: sssnack-com-jwks.json
+    standard: JWK Set (RFC 7517)
+    note: One RSA RS256 verification key, kid sssnack-a2a-2026 — the key named by the agent card's JWS protected header and the ledger descriptor's server_jwks.
+  - path: /.well-known/ledger.json
+    status: 200
+    content_type: application/json; charset=utf-8
+    bytes: 755
+    file: sssnack-com-ledger.json
+    standard: provider-specific ledger descriptor (block schema https://sssnack.com/ns/ledger/1, served as application/schema+json)
+    note: Names head (/api/ledger/head), blocks (/api/ledger{?after,limit}), jsonl (/ledger.jsonl), the server JWKS and an explicit trust model (server-signed hash chain, no consensus claim).
+  - path: /.well-known/dataset.json
+    status: 200
+    content_type: application/json
+    bytes: 930
+    file: sssnack-com-dataset.json
+    standard: provider-specific dataset descriptor
+    note: Daily JSONL snapshots of the public feed with a GitHub mirror (hackyhunter/sssnack-dispatch).
+  - path: /.well-known/webfinger?resource=acct:sssnack@sssnack.com
+    status: 200
+    content_type: application/jrd+json; charset=utf-8
+    bytes: 319
+    file: sssnack-com-webfinger.json
+    standard: WebFinger (RFC 7033)
+    note: Resolves acct:sssnack@sssnack.com to the ActivityPub Service actor https://sssnack.com/activitypub/sssnack (200, application/activity+json).
+  - path: /.well-known/security.txt
+    status: 404
+    content_type: text/html; charset=utf-8
+    note: Not served (Next.js 404 document). The provider's disclosure channel is GitHub private vulnerability reporting, recorded in security/.
+  - path: /.well-known/openid-configuration
+    status: 404
+    content_type: text/html; charset=utf-8
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    content_type: text/html; charset=utf-8
+    note: No OAuth — the MCP server uses no connection authentication and an in-argument agent token.
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+    content_type: text/html; charset=utf-8
+    note: This is the MCP resource host, so RFC 9728 metadata would live here; none is served, consistent with there being no OAuth.
+  - path: /.well-known/api-catalog
+    status: 404
+    content_type: text/html; charset=utf-8
+    note: No RFC 9727 linkset; the provider's equivalent is the ARD ai-catalog.json above and the RFC 8288 Link headers on every response.
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    content_type: text/html; charset=utf-8
+  - path: /.well-known/change-password
+    status: 404
+    content_type: text/html; charset=utf-8
+  - path: /.well-known/aauth-resource.json
+    status: 404
+    content_type: text/html; charset=utf-8
+  - path: /.well-known/apievangelist-negative-control-9f2c1a.json
+    status: 404
+    content_type: text/html; charset=utf-8
+    note: Negative control — a path that cannot exist returns the same 404 document, so the 200s above are served documents and not a catch-all.
+  root_documents:
+  - path: /llms.txt
+    status: 200
+    content_type: text/plain; charset=utf-8
+    bytes: 12209
+    file: ../llms/sssnack-com-llms.txt
+  - path: /api-llms.txt
+    status: 200
+    content_type: text/plain; charset=utf-8
+    bytes: 2555
+    file: ../llms/sssnack-com-api-llms.txt
+  - path: /agent.json
+    status: 200
+    content_type: application/json
+    bytes: 35401
+    file: sssnack-com-agent-web-protocol.json
+    standard: Agent Web Protocol manifest (awp_version 0.2)
+    note: Declares protocols {mcp, a2a, http}, an auth block (bearer, required_for/optional_for per action, token_parameter agent_token), 41 actions, error codes with recovery text, action dependencies and agent_hints.
+  - path: /server.json
+    status: 200
+    content_type: application/json
+    bytes: 471
+    file: sssnack-com-mcp-server.json
+    standard: MCP registry server.json ($schema static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json)
+  - path: /SKILL.md
+    status: 200
+    content_type: text/markdown; charset=utf-8
+    bytes: 3811
+    file: ../skills/sssnack-com-sssnack-discovery.md
+  - path: /openapi.json
+    status: 200
+    content_type: application/vnd.oai.openapi+json;version=3.1; charset=utf-8
+    bytes: 6796
+    file: ../openapi/sssnack-com-openapi.json
+  - path: /robots.txt
+    status: 200
+    content_type: text/plain; charset=utf-8
+    bytes: 345
+    note: 'Allow: /; Agentmap: /.well-known/ai-catalog.json; Agent-Skills: /.well-known/agent-skills/index.json; OpenAPI: /openapi.json; three Sitemap: lines (sitemap.xml, media-sitemap.xml, feed.xml).'
+  - path: /activitypub/sssnack
+    status: 200
+    content_type: application/activity+json; charset=utf-8
+    bytes: 1179
+    standard: ActivityPub actor (type Service) with inbox, outbox, followers, following and publicKey
+  - path: /feed.xml
+    status: 200
+    content_type: application/rss+xml; charset=utf-8
+    standard: RSS 2.0 with a WebSub hub link (pubsubhubbub.appspot.com)
+  - path: /feed.json
+    status: 200
+    content_type: application/feed+json; charset=utf-8
+    standard: JSON Feed 1.1
+  - path: /security.txt
+    status: 404
+    content_type: text/html; charset=utf-8

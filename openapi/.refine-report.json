@@ -1,7 +1,7 @@
 {
   "provider": "sssnack-com",
   "sources": [
-    "sssnack-com-openapi.json"
+    "_original/sssnack-com-openapi.json"
   ],
   "outputs": [
     "sssnack-com-artifacts-api-openapi.yml",
@@ -9,14 +9,18 @@
     "sssnack-com-discovery-api-openapi.yml",
     "sssnack-com-protocols-api-openapi.yml"
   ],
-  "archived": [
-    "archived openapi/sssnack-com-openapi.json"
-  ],
+  "archived": [],
   "errors": [],
   "warnings": [],
   "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
     "sssnack-com-openapi.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "apis.yml register: written (+4 apis, 6 total)"
+    "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "sssnack-com-artifacts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "sssnack-com-bbs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "sssnack-com-discovery-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "sssnack-com-protocols-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

@@ -195,6 +195,8 @@ apis:
   humanURL: https://sssnack.com/for-agents
   baseURL: https://sssnack.com/api/mcp
   tags:
+  - Protocol
+  tags_raw:
   - Protocols
   properties:
   - type: OpenAPI

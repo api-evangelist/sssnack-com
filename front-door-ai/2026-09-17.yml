@@ -1,0 +1,35 @@
+# Front Door AI Index — sssnack-com — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: sssnack-com
+  lexicon_version: '1.0'
+  probed_at: '2026-09-25'
+  host: sssnack.com
+  final_host: sssnack.com
+  ownership: own
+  owner: sssnack-com
+  shares_host_with: null
+  inherited_from: null
+  alias_of: null
+  verdict: scored
+  score: 52
+  band: 6
+  band_label: dominant
+  host_score: 52
+  density: 17.79
+  words: 2923
+  tiers:
+    agentic: 30
+    core: 21
+    model: 1
+  ambiguous: 74
+  top_terms:
+    agent: 74
+    AI: 21
+    AI agent: 17
+    MCP: 4
+    fine-tune: 4
+    inference: 4
+    OpenAI: 1
+    agentic: 1

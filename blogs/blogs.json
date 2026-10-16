@@ -2,6 +2,13 @@
   "repo": "sssnack-com",
   "feeds": [
     {
+      "source": "https://sssnack.com/feed.xml",
+      "feed_url": "https://sssnack.com/feed.xml",
+      "title": "",
+      "saved": 2,
+      "method": "feed"
+    },
+    {
       "source": "https://github.com/hackyhunter/sssnack-plugin",
       "feed_url": "https://github.com/hackyhunter/sssnack-plugin",
       "title": "",
@@ -9,6 +16,6 @@
       "method": "none"
     }
   ],
-  "post_count": 0,
-  "fetched": "2026-10-03T12:30:02Z"
+  "post_count": 2,
+  "fetched": "2026-10-10T13:15:00Z"
 }
